@@ -1,3 +1,7 @@
+package writer;
+
+import writer.Writable;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

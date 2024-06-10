@@ -1,3 +1,5 @@
+package human;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -12,8 +14,8 @@ public class Human {
     private List<Human> children;
     private Human spouse;
 
-    public Human (String name, Gender gender, LocalDate birthDate, 
-                LocalDate deathDate, Human mother, Human father){
+    public Human (String name, Gender gender, LocalDate birthDate,
+                  LocalDate deathDate, Human mother, Human father){
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
@@ -118,9 +120,9 @@ public class Human {
         StringBuilder sb = new StringBuilder();
         sb.append("Имя ");
         sb.append(name);
-        sb.append("Пол ");
+        sb.append(" Пол ");
         sb.append(getGender());
-        sb.append("Возраст ");
+        sb.append(" Возраст ");
         sb.append(getAge());
         sb.append(", ");
         sb.append(getSpouseInfo());
@@ -134,7 +136,7 @@ public class Human {
     }
 
     public String getSpouseInfo(){
-        String res = "Супруг/супруга: ";
+        String res = " Супруг/супруга: ";
         if (spouse == null) {
              res += "нет";
         } else {
@@ -144,7 +146,7 @@ public class Human {
     }
 
     public String getMotherInfo(){
-        String res = "Мать: ";
+        String res = " Мать: ";
         Human mother = getMother();
         if (mother == null) {
              res += "нет информации";
@@ -179,4 +181,5 @@ public class Human {
         }
         return res.toString();
     }
+
 }

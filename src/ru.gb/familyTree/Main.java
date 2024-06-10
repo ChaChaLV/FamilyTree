@@ -1,3 +1,8 @@
+import family_tree.FamilyTree;
+import human.Human;
+import human.Gender;
+import writer.FileHandler;
+
 import java.time.LocalDate;
 
 
@@ -6,14 +11,17 @@ public class Main {
     public static void main(String[] args) {
 
 
-        // System.out.println(tree.toString());
-        String filePath = "C:\\Users\\Tochka0265\\Desktop\\DDD\\src\\ru.gb\\familyTree\\tree.txt";
+//        // System.out.println(tree.toString());
+//        String filePath = "C:\\Users\\Tochka0265\\Desktop\\DDD\\src\\ru.gb\\familyTree\\tree.txt";
+//
+//        FamilyTree tree = read(filePath);
+//
+//        save(tree, filePath);
 
-        FamilyTree tree = read(filePath);
+        testTree();
 
-        save(tree, filePath);
 
-        // Writable writable = new FileHandler();
+
 
     }
 
@@ -27,22 +35,26 @@ static void save (FamilyTree familyTree, String filePath){
     fileHandler.save(familyTree, filePath);
 }
 
-static FamilyTree trstTree(){
-        FamilyTree tree = new FamilyTree();
+static void testTree() {
+    FamilyTree tree = new FamilyTree();
 
-        Human pavel = new Human("Павел", Gender.Male, LocalDate.of(1988, 01, 28));
-        Human vera = new Human("Вера", Gender.Female, LocalDate.of(1990, 12, 12));
+    Human pavel = new Human("Павел", Gender.Male, LocalDate.of(1988, 01, 28));
+    Human vera = new Human("Вера", Gender.Female, LocalDate.of(1990, 12, 12));
 
-        tree.addHuman(pavel);
-        tree.addHuman(vera);
+    tree.addHuman(pavel);
+    tree.addHuman(vera);
 
-        pavel.setSpouse(vera);
-        vera.setSpouse(pavel);
+    pavel.setSpouse(vera);
+    vera.setSpouse(pavel);
 
-        Human tima = new Human("Тимофей",Gender.Male, LocalDate.of
-                               (2016, 03, 18), pavel, vera);
-        tree.addHuman(tima);
+    Human tima = new Human("Тимофей", Gender.Male, LocalDate.of
+            (2016, 03, 18), pavel, vera);
+    tree.addHuman(tima);
 
-        return tree;
+    tree.SortByName();
+    System.out.println(tree.toString());
+    System.out.println("============");
+    tree.SortByAge();
+    System.out.println(tree.toString());
 }
 }
