@@ -51,10 +51,10 @@ static void testTree() {
             (2016, 03, 18), pavel, vera);
     tree.addHuman(tima);
 
-    tree.SortByName();
+    tree.sortByName();
     System.out.println(tree.toString());
     System.out.println("============");
-    tree.SortByAge();
+    tree.sortByAge();
     System.out.println(tree.toString());
 }
 }

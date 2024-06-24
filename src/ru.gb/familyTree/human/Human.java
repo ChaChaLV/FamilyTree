@@ -1,11 +1,13 @@
 package human;
 
+import family_tree.TreeNode;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human {
+public class Human implements TreeNode {
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -79,6 +81,16 @@ public class Human {
         return null;
     }
 
+    @Override
+    public void addParent(Object human) {
+
+    }
+
+    @Override
+    public void addChild(Object human) {
+
+    }
+
     public int getAge(){
         if (deathDate == null){
             return getLifetime(birthDate, LocalDate.now());
@@ -104,6 +116,11 @@ public class Human {
     public String getName(){ return name; }
 
     public LocalDate getBirthDate(){ return birthDate; }
+
+    @Override
+    public LocalDate getDeathDate() {
+        return null;
+    }
 
     public LocalDate getDethDate(){ return deathDate; }
 

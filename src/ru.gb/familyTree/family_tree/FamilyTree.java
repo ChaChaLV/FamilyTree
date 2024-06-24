@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable, Iterable<Human>{
-    private List<Human> family;
+public class FamilyTree<T extends TreeNode<T>> implements Serializable, Iterable<T>{
+    private List<T> family;
 
 public FamilyTree (){
     this(new ArrayList<>());
 }
 
-public FamilyTree(List<Human> family){ this.family = family; }
+public FamilyTree(List<T> family){ this.family = family; }
 
-public boolean addHuman (Human human){
+public boolean addHuman (T human){
     if (human == null) {
         return false;
     }
@@ -31,21 +31,21 @@ public boolean addHuman (Human human){
     return false;
 }
 
-private void addToParents(Human human){
-    for (Human parrent : human.getParents()) {
+private void addToParents(T human){
+    for (T parrent : human.getParents()) {
        parrent.addChild(human);
     }
 }
 
-private void addToChildren(Human human){
-    for (Human child : human.getChildren()) {
+private void addToChildren(T human){
+    for (T child : human.getChildren()) {
         child.addParent(human);
     }
 }
 
-public List<Human> getByName (String name){
-    List<Human> res = new ArrayList<>();
-    for (Human human : family) {
+public List<T> getByName (String name){
+    List<T> res = new ArrayList<>();
+    for (T human : family) {
         if (human.getName().equals(name)) {
             res.add(human);
         }
@@ -60,20 +60,20 @@ public String toString() {
 
 public String getInfo(){
     StringBuilder sb = new StringBuilder();
-    for (Human human : family) {
+    for (T human : family) {
         sb.append(human);
         sb.append("\n");
     }
     return sb.toString();
 }
 
-public void SortByName(){family.sort(new FamilyTreeComparatorByName());}
+public void sortByName(){family.sort(new FamilyTreeComparatorByName<>());}
 
-public void SortByAge(){family.sort(new FamilyTreeComparatorAge());}
+public void sortByAge(){family.sort(new FamilyTreeComparatorAge<>());}
 
     @Override
-    public Iterator<Human> iterator() {
-        return new FamilyTreeIterator(family);
+    public Iterator<T> iterator() {
+        return new FamilyTreeIterator<>(family);
     }
 
    }
