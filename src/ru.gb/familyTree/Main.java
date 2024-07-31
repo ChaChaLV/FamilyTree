@@ -1,8 +1,12 @@
-import family_tree.FamilyTree;
-import human.Human;
-import human.Gender;
-import writer.FileHandler;
+import model.fimily_tree.FamilyTree;
+import model.human.Human;
+import model.human.Gender;
+import model.service.Service;
+import model.writer.FileHandler;
+import view.ConsoleUi;
+import view.View;
 
+import java.io.Console;
 import java.time.LocalDate;
 
 
@@ -56,5 +60,12 @@ static void testTree() {
     System.out.println("============");
     tree.sortByAge();
     System.out.println(tree.toString());
+
+    Service service = new Service(tree);
+    service.setWritable(new FileHandler());
+    service.save();
+
+    View view = new ConsoleUi();
+    view.start();
 }
 }

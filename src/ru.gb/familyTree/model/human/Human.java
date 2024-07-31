@@ -1,13 +1,15 @@
-package human;
+package model.human;
 
-import family_tree.TreeNode;
+import model.fimily_tree.TreeNode;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements TreeNode {
+public class Human implements TreeNode<Human> {
+
+    private long id;
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -18,6 +20,8 @@ public class Human implements TreeNode {
 
     public Human (String name, Gender gender, LocalDate birthDate,
                   LocalDate deathDate, Human mother, Human father){
+
+        id = -1;
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
@@ -81,14 +85,12 @@ public class Human implements TreeNode {
         return null;
     }
 
-    @Override
-    public void addParent(Object human) {
-
+    public long getId() {
+        return id;
     }
 
-    @Override
-    public void addChild(Object human) {
-
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getAge(){
@@ -103,26 +105,18 @@ public class Human implements TreeNode {
         Period life = Period.between(deathDate, birthDate);
         return life.getYears();
     }
-    public void sefBirthDate (LocalDate birthDate){ this.birthDate = birthDate; }
+    public void setBirthDate (LocalDate birthDate){ this.birthDate = birthDate; }
 
-    public void setDethDate (LocalDate dethDate){ this. deathDate = dethDate; }
+    public void setDeathDate (LocalDate deathDate){ this. deathDate = deathDate; }
 
-    public void setSpouse (Human spouse){ this.spouse = spouse; }
+    public void setSpouse(Human spouse){this.spouse = spouse; }
 
-    public Human getSpouse(){
-        return spouse;
-    }
-
+    public Human getSpouse(){ return spouse; }
     public String getName(){ return name; }
 
     public LocalDate getBirthDate(){ return birthDate; }
 
-    @Override
-    public LocalDate getDeathDate() {
-        return null;
-    }
-
-    public LocalDate getDethDate(){ return deathDate; }
+    public LocalDate getDeathDate(){ return deathDate; }
 
     public List<Human> getParents(){ return parents; }
 
@@ -135,6 +129,8 @@ public class Human implements TreeNode {
     
     public String getInfo(){
         StringBuilder sb = new StringBuilder();
+        sb.append("id: ");
+        sb.append(id);
         sb.append("Имя ");
         sb.append(name);
         sb.append(" Пол ");
@@ -148,7 +144,7 @@ public class Human implements TreeNode {
         sb.append(", ");
         sb.append(getFatherInfo());
         sb.append(", ");
-        sb.append(getChilfInfo());
+        sb.append(getChildInfo());
         return sb.toString();
     }
 
@@ -184,7 +180,7 @@ public class Human implements TreeNode {
         return res;
     }
 
-    public String getChilfInfo(){
+    public String getChildInfo(){
         StringBuilder res = new StringBuilder();
         res.append("дети: ");
         if (children.size() != 0){
@@ -199,4 +195,17 @@ public class Human implements TreeNode {
         return res.toString();
     }
 
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof Human)){
+            return false;
+        }
+        Human human = (Human) obj;
+        return human.getId() == getId();
+    }
 }

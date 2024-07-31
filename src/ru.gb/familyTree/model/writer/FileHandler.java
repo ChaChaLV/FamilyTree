@@ -1,6 +1,4 @@
-package writer;
-
-import writer.Writable;
+package model.writer;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
